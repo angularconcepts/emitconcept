@@ -1,0 +1,7 @@
+<div>
+    <p>std-approach works!</p>
+data from child: {{ dataFromChild }}
+<hr>
+<button (click)="callChildMethod()"> click to update date in child</button>
+<app-std-approach-child (myObjectEvent)="onMyObjectEvent($event)"></app-std-approach-child>
+</div>
