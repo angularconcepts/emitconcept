@@ -51,7 +51,7 @@ This is the emitting code.
 
 let o:MyObject={"a":"a"};  
 this.myObjectEvent.emit(o);  
-setTimeout(()=> { o.a="b";  }, 10000);  
+setTimeout(()=> { o.a="b-changed";  }, 5000);    
 
 A little after the data is emitted the same data updated by reference has its change visible on screen.
 

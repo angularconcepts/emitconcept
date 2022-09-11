@@ -10,13 +10,14 @@ export class StdApproachComponent implements OnInit {
   @ViewChild(StdApproachChildComponent) child?:StdApproachChildComponent;
   constructor() { }
   dataFromChild?:string;
+  actualDataFromChild?:MyObject;
   ngOnInit(): void {
   }
 
   onMyObjectEvent(o:MyObject)
   {
+    this.actualDataFromChild=o;
     this.dataFromChild=JSON.stringify(o);
-    setTimeout(()=> { this.dataFromChild=JSON.stringify(o)+"[changed]";  }, 15000);
   }
 
   callChildMethod():void{

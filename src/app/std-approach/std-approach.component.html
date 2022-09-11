@@ -1,6 +1,8 @@
 <div>
     <p>std-approach works!</p>
-data from child: {{ dataFromChild }}
+data received from child: {{ dataFromChild }}<br/>
+current actual a : {{actualDataFromChild?.a}}<br/>
+Note: value of a will change after a short while because post emit using emitted datas reference it will be modified from child.
 <hr>
 <button (click)="callChildMethod()"> click to update date in child</button>
 <app-std-approach-child (myObjectEvent)="onMyObjectEvent($event)"></app-std-approach-child>

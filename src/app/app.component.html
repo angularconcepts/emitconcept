@@ -9,42 +9,55 @@
 <label class="parent">Parent</label>
 <label class="child">Child</label>
 
+<p>Try out by clicking above two links Standard Approach and Alternate Approach</p>
 <p>
-This code is related to this question https://stackoverflow.com/questions/73579453/child-to-parent-communication-without-emitting
-</p><p>How do the two approaches compare
-Why do we not see anyone using the alternate approach?
+  <button type="button" class="btn btn-outline-primary" (click)="toggleExplanation()" 
+    aria-controls="collapseExample">
+    Explanation
+  </button>
 </p>
-<p>
-Using @Output and Emitters as shown above demonstrates how you can create custom events and represent them in the custom components elements with the same simplicity of say a click event. These events can be raised by the child component and declared and used by the parent component with the same elegance of say a click event and handled in same manner. It also renders some degree of loose coupling. It truly componentises the child components. Thus its possible to create a library of the child components declaratively declare their usage and specify the events.   
-</p>
-<p>
-But that is not the only way a child component can communicate with its parent component. It's also possible especially if reuse of the child component is not needed across different parents to just inject the parent class into the child class and invoke parent class method from the child component. That is also an effective way of sharing data from child to parent and can be considered.  
-</p>
-<p>However both the approaches are effectively the same. Event emitting is almost the same as the direct method invocation discussed here with the additional advantage of declaratively describing its usage and facilitating reuse. Data is passed in same manner by refernce for objects and by copy for primitives in both the cases. Both approaches can be debugged similarly and easily using breakpoints if needed. 
-</p>
-<p>This data passing by reference is demonsrated here in the standard approach.</p> 
-<p> This is the emitting code.  </p> 
-<p>
-&nbsp;&nbsp;&nbsp;&nbsp;let o:MyObject={{ '{' }}"a":"a"{{ '}' }};<br/>  
-&nbsp;&nbsp;&nbsp;&nbsp;this.myObjectEvent.emit(o);<br/>  
-&nbsp;&nbsp;&nbsp;&nbsp;setTimeout(()=> {{ '{' }} o.a="b";  {{ '}' }}, 10000);<br/>  
-</p> 
-<p> A little after the data is emitted the same data updated by reference has its change visible on screen.
-</p>  <p> 
-This is the event handling code.  </p>  
-<p> 
-&nbsp;&nbsp;&nbsp;&nbsp;onMyObjectEvent(o:MyObject)<br/>  
-&nbsp;&nbsp;&nbsp;&nbsp;{{ '{' }}<br/>  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.dataFromChild=JSON.stringify(o); <br/> 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setTimeout(()=> {{ '{' }} this.dataFromChild=JSON.stringify(o)+"[changed]";  {{ '}' }}, 15000); <br/> 
-&nbsp;&nbsp;&nbsp;&nbsp;{{ '}' }}  <br/>
-</p> 
-<p> 
- In Direct Method invocation, of course data is always passed by reference for objects and by copy for primitives (No need to demonstrate it).
- </p>  
- <p>
- Source code can be found at <a href="https://github.com/angularconcepts/emitconcept.git">https://github.com/angularconcepts/emitconcept.git</a><br/>
- Stackblitz URL: <a href="https://stackblitz.com/github/angularconcepts/emitconcept">https://stackblitz.com/github/angularconcepts/emitconcept</a>
- 
- </p>
- 
+<div>
+  <div *ngIf="!explanationIsCollapsed" class="card">
+    <div class="card-body">
+      <p>
+        This code is related to this question https://stackoverflow.com/questions/73579453/child-to-parent-communication-without-emitting
+        </p><p>How do the two approaches compare
+        Why do we not see anyone using the alternate approach?
+        </p>
+        <p>
+        Using @Output and Emitters as shown above demonstrates how you can create custom events and represent them in the custom components elements with the same simplicity of say a click event. These events can be raised by the child component and declared and used by the parent component with the same elegance of say a click event and handled in same manner. It also renders some degree of loose coupling. It truly componentises the child components. Thus its possible to create a library of the child components declaratively declare their usage and specify the events.   
+        </p>
+        <p>
+        But that is not the only way a child component can communicate with its parent component. It's also possible especially if reuse of the child component is not needed across different parents to just inject the parent class into the child class and invoke parent class method from the child component. That is also an effective way of sharing data from child to parent and can be considered.  
+        </p>
+        <p>However both the approaches are effectively the same. Event emitting is almost the same as the direct method invocation discussed here with the additional advantage of declaratively describing its usage and facilitating reuse. Data is passed in same manner by refernce for objects and by copy for primitives in both the cases. Both approaches can be debugged similarly and easily using breakpoints if needed. 
+        </p>
+        <p>This data passing by reference is demonsrated here in the standard approach.</p> 
+        <p> This is the emitting code.  </p> 
+        <p>
+        &nbsp;&nbsp;&nbsp;&nbsp;let o:MyObject={{ '{' }}"a":"a"{{ '}' }};<br/>  
+        &nbsp;&nbsp;&nbsp;&nbsp;this.myObjectEvent.emit(o);<br/>  
+        &nbsp;&nbsp;&nbsp;&nbsp;setTimeout(()=> {{ '{' }} o.a="b-changed";  {{ '}' }}, 5000);<br/>  
+        </p> 
+        <p> A little after the data is emitted the same data updated by reference has its change visible on screen.
+        </p>  <p> 
+        This is the event handling code.  </p>  
+        <p> 
+        &nbsp;&nbsp;&nbsp;&nbsp;onMyObjectEvent(o:MyObject)<br/>  
+        &nbsp;&nbsp;&nbsp;&nbsp;{{ '{' }}<br/>  
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.actualDataFromChild=o; <br/> 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.dataFromChild=JSON.stringify(o); <br/> 
+        &nbsp;&nbsp;&nbsp;&nbsp;{{ '}' }}  <br/>
+        </p> 
+        <p> 
+         In Direct Method invocation, of course data is always passed by reference for objects and by copy for primitives (No need to demonstrate it).
+         </p>  
+         <p>
+         Source code can be found at <a href="https://github.com/angularconcepts/emitconcept.git">https://github.com/angularconcepts/emitconcept.git</a><br/>
+         Stackblitz URL: <a href="https://stackblitz.com/github/angularconcepts/emitconcept">https://stackblitz.com/github/angularconcepts/emitconcept</a>
+         
+         </p>
+         
+    </div>
+  </div>
+</div>

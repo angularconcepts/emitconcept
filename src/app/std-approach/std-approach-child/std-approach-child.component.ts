@@ -25,7 +25,7 @@ export class StdApproachChildComponent implements OnInit {
   {
 	let o:MyObject={"a":"a"};
     this.myObjectEvent.emit(o);
-    setTimeout(()=> { o.a="b";  }, 10000);
+    setTimeout(()=> { o.a="b-changed";  }, 5000);
     
   }
 
