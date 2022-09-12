@@ -56,7 +56,18 @@
         </p> 
         <p> 
          In Direct Method invocation, of course data is always passed by reference for objects and by copy for primitives (No need to demonstrate it).
+         Regarding the "almost". There is a difference. The devil is in the details. When emit is called the thread of execution effectively splits into two.
+         The emit handler will be invoked. Also invoked is the statements following the emit call. 
+         This has been utilised in this example to show how the emit passes objects by reference. 
+         However is also useful to be aware that having some code post emit call can have undesirable consequences at times.
+         In direct method calls unless the invocation is async there is no effective  splitting in thread of execution.
+         
          </p>  
+        <p> Note: javascript has a single threaded model unless worker threads are used. 
+          And setTimeOut etc are invoked natively outside the single threaded model of java script.
+         Also anything that causes a split in thread of execution like emit can also be considered to be outside the single threaded model of javascript.
+         
+        </p>
          
          
     </div>
